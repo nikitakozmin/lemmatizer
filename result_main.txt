@@ -14,13 +14,13 @@ Accuracy: 1.0
 Тестовый запуск для:
 рофлить, кринжевать, депнуть, пофиксить.
 Результат тестового запуска:
-рофлить{?=?} кринжевать{?=?} депнуть{?=?} пофиксить{?=?}
-Accuracy: 0.0
+рофлить{возлить=INFN} кринжевать{дрожжевать=INFN} депнуть{дернуть=INFN} пофиксить{поваксить=INFN}
+Accuracy: 0.7623015873015873
 Введите текст или нажмите Ctrl+C: тест ввода
 Результат:  тест{тесто=NOUN} ввода{ввод=NOUN}
 Accuracy: 1.0
 Введите текст или нажмите Ctrl+C: Traceback (most recent call last):
-  File "C:\Users\kozmi\GoogleDrive\Development\Python\Python files\BigProjects\lemmatizer\main.py", line 100, in <module>
+  File "C:\Users\kozmi\GoogleDrive\Development\Python\Python files\BigProjects\lemmatizer\main.py", line 171, in <module>
     result, acc = process_text(input("Введите текст или нажмите Ctrl+C: "), dictionary)
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 KeyboardInterrupt

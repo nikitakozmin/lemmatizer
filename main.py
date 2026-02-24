@@ -43,34 +43,105 @@ def load_dictionary(path):
     return result
 
 
+def levenshtein_limited(a, b, max_dist):
+    """
+    Вычисляет расстояние Левенштейна.
+    Если расстояние > max_dist — прекращает расчёт.
+    """
+    if abs(len(a) - len(b)) > max_dist:
+        return max_dist + 1
+
+    prev = list(range(len(b) + 1))
+
+    for i, ca in enumerate(a, 1):
+        curr = [i]
+        min_row = i
+
+        for j, cb in enumerate(b, 1):
+            cost = 0 if ca == cb else 1
+
+            val = min(
+                prev[j] + 1,      # удаление
+                curr[j - 1] + 1,  # вставка
+                prev[j - 1] + cost  # замена
+            )
+            curr.append(val)
+
+            if val < min_row:
+                min_row = val
+
+        if min_row > max_dist:
+            return max_dist + 1
+
+        prev = curr
+
+    return prev[-1]
+
+
+def find_closest(word, dictionary, max_dist=float("+inf")):
+    best_word = None
+    best_dist = max_dist + 1
+
+    for candidate in dictionary.keys():
+        dist = levenshtein_limited(word, candidate, best_dist)
+        if dist < best_dist:
+            best_dist = dist
+            best_word = candidate
+
+            if dist == 0:
+                break
+
+    return best_word, best_dist
+
+
+def word_accuracy(a, b):
+    """
+    Точность = угаданные буквы / max(len(a), len(b))
+    """
+    max_len = max(len(a), len(b))
+    if max_len == 0:
+        return 1.0
+
+    matches = sum(1 for x, y in zip(a, b) if x == y)
+    return matches / max_len
+
+
 def process_text(text, dictionary):
     lines = text.strip().split("\n")
     output_lines = []
 
-    total = 0
-    found = 0
+    total_accuracy = 0
+    word_count = 0
 
     for line in lines:
-        # убираем только допустимые знаки препинания
         clean = re.sub(r"[.,!?]", "", line)
         tokens = clean.split()
 
         parts = []
+
         for token in tokens:
-            total += 1
+            word_count += 1
             w = normalize(token)
 
             if w in dictionary:
                 lemma, pos = dictionary[w]
                 parts.append(f"{token}{{{lemma}={pos}}}")
-                found += 1
+                total_accuracy += 1.0
             else:
-                parts.append(f"{token}{{?=?}}")
+                closest, dist = find_closest(w, dictionary)
+
+                if closest:
+                    lemma, pos = dictionary[closest]
+                    parts.append(f"{token}{{{lemma}={pos}}}")
+                    total_accuracy += word_accuracy(w, closest)
+                else:
+                    parts.append(f"{token}{{?=?}}")
+                    total_accuracy += 0.0
 
         output_lines.append(" ".join(parts))
 
-    accuracy = found / total if total > 0 else 0.0
-    return "\n".join(output_lines), accuracy
+    avg_accuracy = total_accuracy / word_count if word_count > 0 else 0.0
+    return "\n".join(output_lines), avg_accuracy
 
 
 def test_run(test_text, dictionary):
