@@ -1,0 +1,35 @@
+python draft.py
+2026-02-22 02:25:44.416852: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 02:25:47.201398: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-22 02:26:01.423394: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ dense (Dense)                        │ (None, 256)                 │         450,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 256)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 128)                 │          32,896 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_2 (Dense)                      │ (None, 15)                  │           1,935 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 485,647 (1.85 MB)
+ Trainable params: 485,647 (1.85 MB)
+ Non-trainable params: 0 (0.00 B)
+Epoch 1/5
+3516/3516 ━━━━━━━━━━━━━━━━━━━━ 19s 5ms/step - accuracy: 0.9443 - loss: 0.1801 - val_accuracy: 0.9242 - val_loss: 0.2628
+Epoch 2/5
+3516/3516 ━━━━━━━━━━━━━━━━━━━━ 15s 4ms/step - accuracy: 0.9720 - loss: 0.0845 - val_accuracy: 0.9208 - val_loss: 0.2912
+Epoch 3/5
+3516/3516 ━━━━━━━━━━━━━━━━━━━━ 15s 4ms/step - accuracy: 0.9765 - loss: 0.0677 - val_accuracy: 0.9185 - val_loss: 0.3380
+Epoch 4/5
+3516/3516 ━━━━━━━━━━━━━━━━━━━━ 17s 5ms/step - accuracy: 0.9789 - loss: 0.0588 - val_accuracy: 0.9200 - val_loss: 0.3469
+Epoch 5/5
+3516/3516 ━━━━━━━━━━━━━━━━━━━━ 17s 5ms/step - accuracy: 0.9809 - loss: 0.0525 - val_accuracy: 0.9202 - val_loss: 0.3717
+Стала{стала=NOUN} стабильнее{стабильнее=COMP} экономическая{экономическая=ADJF} и{и=VERB} политическая{политическая=ADJF} обстановка{обстановка=NOUN} предприятия{предприятия=NOUN}
+вывели{вывели=VERB} из{из=NOUN} тени{тени=NOUN} зарплаты{зарплаты=NOUN} сотрудников{сотрудник=NOUN} Все{все=NOUN} Гришины{гришины=NOUN} одноклассники{одноклассники=NOUN} уже{уже=NOUN} побывали{побывали=VERB} за{за=NOUN}
+границей{границей=NOUN} он{он=NOUN} был{был=NOUN} чуть{чуть=INFN} ли{ли=VERB} не{не=NOUN} единственным{единственным=ADJF} кого{к=ADJF} не{не=NOUN} вывозили{вывозить=NOUN} никуда{никуда=NOUN} дальше{дальше=NOUN} Красной{красной=ADJF} Пахры{пахры=NOUN}
